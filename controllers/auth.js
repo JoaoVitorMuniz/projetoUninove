@@ -26,7 +26,6 @@ router.post('/registro', async (req, res) => {
             email,
             senha
         });
-
         userRegistro.senha = undefined
         res.send({
             usuario: userRegistro
@@ -36,13 +35,12 @@ router.post('/registro', async (req, res) => {
         console.log(erro);
         res.status(500).send({
             error: "Error de requisiçao"
-        })
+        });
     }
 });
 
-
 router.post('/login', async (req, res) => {
-
+    
     try {
         const {
             email,
@@ -52,7 +50,6 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({
             email
         }).select("+senha");
-        console.log(user)
 
         if (!user)
             return res.status(404).send({
@@ -64,6 +61,7 @@ router.post('/login', async (req, res) => {
                 error: "Senha invalida"
             });
         }
+
         user.senha = undefined;
         res.send({
             user
@@ -77,10 +75,7 @@ router.post('/login', async (req, res) => {
         })
     }
 
-})
-
-
-
+});
 
 
 module.exports = router

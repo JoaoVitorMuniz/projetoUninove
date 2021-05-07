@@ -2,8 +2,7 @@ const express = require('express');
 const User = require('../database/modules/user');
 const Post = require('../database/modules/poste');
 const router = express.Router();
-
-
+const validaAdm = require('../controllers/authAdmin')
 router.get('/post', async (req, res) => {
     try {
         const post = await Post.find();
@@ -22,8 +21,8 @@ router.get('/post', async (req, res) => {
 
 });
 
-
-router.post('/post', async (req, res) => {
+router.post('/post',validaAdm, async (req, res) => {
+    
     try {
         const {
             titulo,
@@ -58,7 +57,7 @@ router.post('/post', async (req, res) => {
 });
 
 
-router.delete('/post/:id', async (req, res) => {
+router.delete('/post/:id',validaAdm, async (req, res) => {
 
     try {
 

@@ -76,7 +76,7 @@ router.post('/login', async (req, res) => {
 
         user.senha = undefined;
         res.send({
-            user
+            usuario: user
         });
 
     } catch (erro) {

@@ -12,6 +12,11 @@ router.post('/registro', async (req, res) => {
             senha
         } = req.body;
 
+        if( !nome || !email || !senha){
+
+            return res.status(400).send({error: "Preencha todos os dados"});
+         }
+
         const user = await User.findOne({
             email
         });
@@ -41,12 +46,19 @@ router.post('/registro', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     
+    
     try {
         const {
             email,
             senha
         } = req.body
 
+     if(!email || !senha){
+
+        return res.status(400).send({error: "Preencha todos os dados"});
+     }
+
+        
         const user = await User.findOne({
             email
         }).select("+senha");

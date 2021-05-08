@@ -21,8 +21,8 @@ router.get('/post', async (req, res) => {
 
 });
 
-router.post('/post',validaAdm, async (req, res) => {
-    
+router.post('/post', validaAdm, async (req, res) => {
+
     try {
         const {
             titulo,
@@ -56,12 +56,42 @@ router.post('/post',validaAdm, async (req, res) => {
 
 });
 
-
-router.delete('/post/:id',validaAdm, async (req, res) => {
+router.get('/post/:id', async (req, res) => {
 
     try {
 
-        const {id} = req.params
+        const {
+            id
+        } = req.params
+        const post = await Post.findById(id);
+        if (!post) {
+
+            return res.status(400).send({
+                error: "Nao encontrado post"
+            })
+        }
+        res.send({
+            post
+        })
+
+    } catch (erro) {
+
+        console.log(erro);
+        return res.status(400).send({
+            error: "Falha ao encontrar"
+        });
+    }
+});
+
+
+
+router.delete('/post/:id', validaAdm, async (req, res) => {
+
+    try {
+
+        const {
+            id
+        } = req.params
         await Post.findByIdAndRemove(id);
         res.send()
 

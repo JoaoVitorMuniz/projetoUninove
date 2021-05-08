@@ -3,7 +3,7 @@ const User = require("../database/modules/user")
 
 const validaAdm = async function (req,res,next){
 
-     const id = req.header('admin');
+     const id = req.header('Authorization');
 
      if(!id){
 

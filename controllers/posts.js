@@ -29,7 +29,7 @@ router.post('/post', validaAdm, async (req, res) => {
             imagem,
             desc
         } = req.body
-
+console.log(req.body)
         if (!titulo || !imagem || !desc) {
 
             return res.status(400).send({

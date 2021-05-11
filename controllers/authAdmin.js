@@ -25,6 +25,4 @@ const validaAdm = async function (req,res,next){
 
 }
 
-
 module.exports = validaAdm
-

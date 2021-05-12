@@ -5,6 +5,6 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
-});
+}).then(()=>{console.log("Connectado ao banco de dados")}).catch(err=>{console.log(err)})
 
 module.exports = mongoose
